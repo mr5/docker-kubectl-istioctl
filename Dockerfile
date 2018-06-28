@@ -4,7 +4,7 @@ RUN apk add gettext ca-certificates openssl make
 
 ENV DUMB_VERSION="1.2.1"
 ENV KUBE_VERSION="v1.10.1"
-ENV ISTIO_VERSION="0.7.1"
+ENV ISTIO_VERSION="0.8.0"
 
 
 RUN wget https://github.com/Yelp/dumb-init/releases/download/v${DUMB_VERSION}/dumb-init_${DUMB_VERSION}_amd64 -O /usr/local/bin/dumb-init \
