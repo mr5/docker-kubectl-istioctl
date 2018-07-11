@@ -5,19 +5,24 @@ RUN apk add gettext ca-certificates openssl make
 ENV DUMB_VERSION="1.2.1"
 ENV KUBE_VERSION="v1.10.1"
 ENV ISTIO_VERSION="0.8.0"
-
+ENV HELM_VERSION="v2.9.1"
 
 RUN wget https://github.com/Yelp/dumb-init/releases/download/v${DUMB_VERSION}/dumb-init_${DUMB_VERSION}_amd64 -O /usr/local/bin/dumb-init \
     && chmod  +x /usr/local/bin/dumb-init
 
 RUN wget https://storage.googleapis.com/kubernetes-release/release/${KUBE_VERSION}/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl \
     && chmod +x /usr/local/bin/kubectl
+    
 RUN wget https://github.com/istio/istio/releases/download/${ISTIO_VERSION}/istio-${ISTIO_VERSION}-linux.tar.gz \
     && tar zxvf istio-${ISTIO_VERSION}-linux.tar.gz \
     && cp istio-${ISTIO_VERSION}/bin/istioctl /usr/local/bin/ \
     && chmod  +x /usr/local/bin/istioctl
-
-
+    
+RUN wget https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz
+    && tar zxvf helm-${HELM_VERSION}-linux-amd64.tar.gz \
+    && cp linux-amd64/helm /usr/local/bin/ \
+    && chmod  +x /usr/local/bin/helm
+    
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN cat /usr/local/bin/docker-entrypoint.sh >> /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
