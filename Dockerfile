@@ -18,7 +18,7 @@ RUN wget https://github.com/istio/istio/releases/download/${ISTIO_VERSION}/istio
     && cp istio-${ISTIO_VERSION}/bin/istioctl /usr/local/bin/ \
     && chmod  +x /usr/local/bin/istioctl
     
-RUN wget https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz
+RUN wget https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz \
     && tar zxvf helm-${HELM_VERSION}-linux-amd64.tar.gz \
     && cp linux-amd64/helm /usr/local/bin/ \
     && chmod  +x /usr/local/bin/helm
